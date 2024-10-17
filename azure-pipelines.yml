@@ -1,0 +1,16 @@
+trigger:
+- main  # немесе сіздің негізгі тармағыңыз
+
+pool:
+  vmImage: 'windows-latest'  # Бұлтты виртуалды машина (Linux)
+
+steps:
+- task: UsePythonVersion@0  # Python нұсқасын орнату
+  inputs:
+    versionSpec: '3.x'
+
+- script: |
+    python -m pip install --upgrade pip
+    pip install -r requirements.txt
+    pytest  # Тесттерді іске қосу
+  displayName: 'Install dependencies and run tests'
